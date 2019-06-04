@@ -212,7 +212,7 @@ GCD offers you four Quality of Service (Qos) classes:
 - `Race Condition(s)` - what happens when the expected completion order of a sequence of operations becomes unpredictable, causing our program logic to end up in an undefined state. ([link](https://www.swiftbysundell.com/posts/avoiding-race-conditions-in-swift))
 - The two secondary GCD QoS priority classes:
 &nbsp;&nbsp;&nbsp; - `.default` </br>
-&nbsp;&nbsp;&nbsp; - `.unspecified`
+&nbsp;&nbsp;&nbsp; - `.unspecified` 
 ![qosd](img/qos-de.png)
 
 *https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html*
