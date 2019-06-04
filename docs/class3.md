@@ -127,9 +127,8 @@ Typically, the critical section accesses a shared resource &mdash; such as a dat
 
 In the diagram below, if `Process 1` executes the code in the Critical Section to read a shared variable &mdash; while `Process 2` needs to write to the same variable &mdash;  `Process 1` might get either the old or new value of the variable:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Critical_section_fg](img/Critical_section_fg.png)
-
 > While a variable is used by one process, it cannot be accessed by another process.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Critical_section_fg](img/Critical_section_fg.png)
 
 #### Examples of an atomic action.
 
@@ -139,3 +138,94 @@ To ensure the balance reported is always accurate, any code accessing the variab
 
 ##### A shared document.
 > When two or more people are updating a shared document, access to the document can be temporarily limited to each active contributor — even if only for an instance — to prevent additional contributors from making changes before the doc is autosaved.
+
+### Thread safe
+Thread safe code:
+* can be safely called from multiple threads or concurrent tasks without causing any problems (data corruption, crashing, etc).
+* is guaranteed to be free of race conditions when accessed by multiple threads simultaneously.
+
+> An example of thread safe code: A Dictionary or an Array that is declared as a constant (with let) — Because it is *read-only*, you can access it from multiple threads at the same time without issue.<br>
+Code that is not thread safe must only be run in one context at a time.<br>
+Example: A Dictionary or an Array declared as a var is not thread safe and should only be accessed from one thread at a time.
+
+### Serial Queues
+
+Serial queues guarantee that __*only one task runs*__ at any given time.
+
+Serial Queues:
+- only have a __*single thread*__ associated with them and thus only allow a single task to be executed at any given time.
+- execute tasks in the order they are submitted, one at a time. <sup>1</sup>
+
+Since no two tasks in a serial queue can ever run concurrently, there is no risk they might access the same critical section concurrently; that __*protects the critical section*__ from race conditions with respect to those tasks only. So if the only way to access that critical section is via a task submitted to that dispatch queue, then you can be sure that the critical section is safe.
+
+**The Main Queue is a Serial Queue** </br>
+As mentioned, when an iOS app launches, the system automatically creates a __*serial queue*__ called the `main queue` and binds it to the application’s `main thread`.
+
+```Swift  
+  let mainQueue   = DispatchQueue.main
+```
+This `main queue` is the queue to use for sending messages to UIViews and and all other UI-related tasks.
+
+### Concurrent Queues
+
+On the other hand, a **concurrent queue** is able to utilize as many threads as the system has resources for.
+
+For Concurrent Queues:
+- threads will be created and released as needed for a concurrent queue.
+- multiple tasks can run at the same time.
+- tasks are guaranteed to start in the order they were added.
+
+![concurrent_queue](img/concurrent_queue.png) </br>
+
+Up to GCD:
+- Tasks can finish in any order
+- We don’t know how much it will take for the next block to start.
+- We don’t know the number of blocks that are running at a time.
+- When and where to start a block is up to GCD.
+- Up to GCD if overlapping blocks should run on a different core or do a context switch.
+
+# Types Of Queues
+3 main types of queues:
+* `The Main Queue`
+* `Global Dispatch queues`
+  * High
+  * Low
+  * Default
+  * Background
+* `Custom queues`
+
+# QoS Priority
+When setting up `Global Dispatch Queues`, you do not specify the priority directly; instead, you are required to specify a `Quality of Service (Qos)` level (as a class property) which guides GCD into determining the priority level to give the task.
+
+GCD offers you four Quality of Service (Qos) classes:
+* .userInteractive
+* .userInitiated
+* .utility
+* .background
+
+![QOS](img/qos-class.png)
+
+# After Class
+1. Research:
+- `The Dining Philosophers Problem` - The dining philosophers problem is a classic concurrency problem dealing with synchronization. ([link](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html))
+- `The Critical Section Problem` - refers to the problem of how to ensure that at most one process is executing its critical section at a given time.
+- `Race Condition(s)` - what happens when the expected completion order of a sequence of operations becomes unpredictable, causing our program logic to end up in an undefined state. ([link](https://www.swiftbysundell.com/posts/avoiding-race-conditions-in-swift))
+- The two secondary GCD QoS priority classes:
+&nbsp;&nbsp;&nbsp; - `.default` </br>
+&nbsp;&nbsp;&nbsp; - `.unspecified`
+![qosd](img/qos-de.png)
+
+*https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html*
+
+2. Assignment:
+- Execute the following tutorial (part 1 only):
+https://www.raywenderlich.com/5370-grand-central-dispatch-tutorial-for-swift-4-part-1-2
+
+# Additional Resources
+
+1. [Slides](https://docs.google.com/presentation/d/1dC_CFNPo4nGdw7OVMlLwNi6Dbmn0cX9ugCgVTiMzdj8/edit#slide=id.p)
+2. [Modernizing Grand Central Dispatch Usage - a vide from Apple](https://developer.apple.com/videos/play/wwdc2017/706/)
+3. [Critical_section - wikipedia](https://en.wikipedia.org/wiki/Critical_section)
+4. [lock() - from Apple docs](https://developer.apple.com/documentation/foundation/nslocking/1416318-lock)
+5. [Peterson Algorithm - wikipedia](https://en.wikipedia.org/wiki/Peterson%27s_algorithm)
+5. [Thread_safety - wikipedia](https://en.wikipedia.org/wiki/Thread_safety)
