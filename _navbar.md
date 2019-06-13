@@ -5,3 +5,4 @@
 *  **[Class 3](class3.md)**
 *  **[Class 4](class4.md)**
 *  **[Class 5](class5.md)**
+*  **[Class 6](class6.md)**
