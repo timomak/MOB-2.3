@@ -171,7 +171,7 @@ Operation queues retain operations until they're finished, and queues themselves
 ## Thread Safety
 
 > Operation queues use the Dispatch framework to initiate the execution of their operations.
-As a result, operations are always executed on a separate thread, regardless of whether they are designated as synchronous or asynchronous.<br>s
+As a result, operations are always executed on a separate thread, regardless of whether they are designated as synchronous or asynchronous.<br>
 This means `Operation queues are inherently thread safe`: You can safely access a single OperationQueue object from multiple threads without creating additional locks to synchronize access to it.
 
 # In Class Activity II
