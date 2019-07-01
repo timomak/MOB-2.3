@@ -9,3 +9,4 @@
 *  **[Class 7](class7.md)**
 *  **[Class 8](class8.md)**
 *  **[Class 9](class9.md)**
+*  **[Study Guide](studyguide.md)**

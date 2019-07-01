@@ -36,6 +36,7 @@ public var count: Int {
 * Simultaneously running multiple processes.
 * Parallelism uses concurrency to operate.
 * Concurrency breaks down large tasks into multiple pieces. Parallelism takes individual pieces and processes them simultaneously.
+* Parallelism can work without Concurrency.
 
 
 ### What are most commonly used APIs to implement concurrency in iOS?
