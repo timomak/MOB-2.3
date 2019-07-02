@@ -75,18 +75,6 @@ Quizlet ([link](https://quizlet.com/_6u0szm))
 * `Task Parallelism` - The characteristic of a parallel program that entirely different calculations can be performed on either the same or different sets of data.
 * `Operation(s)` - Allows for greater control over the submitted tasks, including some control over scheduling through adding dependencies among various operations and can re-use, cancel or suspend them.
 * `Parallel Computing` - This utilizes a shift from procedural tasks, which run sequentially, to tasks that run at the same time.
-<!-- * `` -
-* `` -
-* `` -
-* `` -
-* `` -
-* `` -
-* `` -
-* `` -
-* `` -
-* `` -
-* `` -
-* `` - -->
 
 ## Q & A
 **Q**: What are two ways to execute operations?<br>
@@ -148,36 +136,3 @@ Priority Inversion<br><br>
 
 **Q**: What are the 4 key benefits the Operation class offers over GCD?<br>
 **A**: Reusability, Dependencies, KVO-Compliance, and Developer Control<br><br>
-
-<!-- **Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br>
-
-**Q**: <br>
-**A**: <br><br> -->
